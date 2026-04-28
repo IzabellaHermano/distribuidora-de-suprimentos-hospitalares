@@ -40,6 +40,14 @@ export default function Login() {
         <Button fullWidth variant="contained" onClick={handleLogin}>
           Entrar
         </Button>
+        <Button
+          fullWidth
+          variant="text"
+          onClick={() => navigate("/cadastro")}
+          sx={{ marginTop: 1 }}
+        >
+          Não tem conta? Cadastre-se
+        </Button>
       </Card>
     </div>
   );
