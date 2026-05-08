@@ -9,6 +9,14 @@ export const addInsumo = (insumo) => {
   saveData("insumos", insumos);
 };
 
+export const editInsumo = (insumoAtualizado) => {
+  let insumos = getData("insumos");
+  insumos = insumos.map((i) =>
+    i.id === insumoAtualizado.id ? { ...i, ...insumoAtualizado } : i
+  );
+  saveData("insumos", insumos);
+};
+
 export const deleteInsumo = (id) => {
   let insumos = getData("insumos");
   insumos = insumos.filter((i) => i.id !== id);
@@ -17,7 +25,12 @@ export const deleteInsumo = (id) => {
 
 export const buscarInsumos = (filtro) => {
   const insumos = getData("insumos");
-  return insumos.filter((i) =>
-    i.nome.toLowerCase().includes(filtro.toLowerCase())
+  const f = filtro.toLowerCase();
+  return insumos.filter(
+    (i) =>
+      (i.nome && i.nome.toLowerCase().includes(f)) ||
+      (i.tipo && i.tipo.toLowerCase().includes(f)) ||
+      (i.tamanho && i.tamanho.toLowerCase().includes(f)) ||
+      (i.material && i.material.toLowerCase().includes(f))
   );
 };
